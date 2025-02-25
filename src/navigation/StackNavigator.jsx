@@ -7,6 +7,7 @@ import Contact from '../screen/Contact';
 import About from '../screen/About';
 import Login from '../screen/Login';
 import Signup from '../screen/Signup';
+import Splash from '../screen/Splash';
 
 const stack = createStackNavigator();
 
@@ -14,10 +15,11 @@ const StackNavigator = () => {
   return (
     <NavigationContainer>
         <stack.Navigator>
+            <stack.Screen name='Splash' component={Splash} options={{headerShown:false}} />
+            <stack.Screen name='Home' component={Home} options={{headerShown:false}}/>
             <stack.Screen name='Signup' component={Signup} />
             <stack.Screen name='About' component={About} />
             <stack.Screen name='Login' component={Login} />
-            <stack.Screen name='Home' component={Home} />
             <stack.Screen name='Contact' component={Contact} />
         </stack.Navigator>
     </NavigationContainer>
