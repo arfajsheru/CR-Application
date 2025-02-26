@@ -9,7 +9,7 @@ const Profile = () => {
       <Image source={require('../assets/profile.png')} style={styles.image} />
       <Text style={styles.profiletext}>{'View Profile'}</Text>
 
-      <TouchableOpacity style={styles.navContainer}  onPress={()=> navigation.navigate('Home')}>
+      <TouchableOpacity style={styles.navContainer}  onPress={()=> navigation.navigate('Home')}  >
         <Image source={require('../assets/home.png')} style={styles.navImage} />
         <Text style={styles.navText}>{'Home'}</Text>
       </TouchableOpacity>

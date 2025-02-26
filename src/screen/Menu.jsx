@@ -1,10 +1,13 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../context/AuthContext'
 
 const Menu = () => {
+
+  const {name} = useContext(AuthContext);
   return (
-    <View>
-      <Text>Menu</Text>
+    <View style={{flex:1, backgroundColor:'red',}}>
+      <Text>{name}</Text>
     </View>
   )
 }

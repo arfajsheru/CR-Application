@@ -1,13 +1,9 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import BottomTabNavigator from '../navigation/BottomTabNavigator'
+import {View, Text} from 'react-native';
+import React from 'react';
+import BottomTabNavigator from '../navigation/BottomTabNavigator';
 
 const Home = () => {
-  return (
-    <View style={{flex:1}}>
-      <BottomTabNavigator />
-    </View>
-  )
-}
+  return <BottomTabNavigator />;
+};
 
-export default Home
+export default Home;

@@ -1,43 +1,68 @@
-import { View, StyleSheet, Text } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import {View, StyleSheet, Text} from 'react-native';
+import React, {useEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const Splash = () => {
   const navigation = useNavigation();
-  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setFadeOut(true);
-      setTimeout(() => {
-        navigation.replace("Home"); // Navigate to Home Screen
-      }, 800); // Wait for fade-out animation
-    }, 3000); // 5 second delay
+    const timer = setTimeout(() => {
+      navigation.replace('Home');
+    }, 3000); // 2 sec delay (earlier was 3s)
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <Animatable.View 
-      animation={fadeOut ? 'fadeOutLeft' : 'fadeInRight'}
-      style={styles.container}
-    >
-      {/* Logo with Smooth Fade Animation */}
+    <Animatable.View animation="zoomInRight" style={styles.container}>
+      {/* Logo with Quick Zoom-in Effect */}
       <Animatable.Image
-        animation="fadeInRight"
-        source={require("../assets/AppLogo.png")}
+        animation={{
+          0: {opacity: 0, scale: 0.9},
+          1: {opacity: 1, scale: 1},
+        }}
+        duration={1000} // Reduced animation time
+        easing="ease-in-out"
+        source={require('../assets/AppLogo.png')}
         style={styles.logoImage}
       />
 
-      {/* Small Subtitle Below */}
-      <Animatable.Text animation="fadeInLeft" style={styles.subText}>
+      {/* Small Subtitle with Fast Slide-Up Animation */}
+      <Animatable.Text
+        animation={{
+          0: {opacity: 0, translateY: 15},
+          1: {opacity: 1, translateY: 0},
+        }}
+        duration={800} // Faster appearance
+        style={styles.subText}>
         Delicious flavors for every taste!
       </Animatable.Text>
 
-      <Animatable.View animation="fadeInLeft" style={styles.vegbox}>
-        <View style={styles.subVegbox}></View>
+      {/* Veg Box with Quick Bounce */}
+      <Animatable.View
+        animation="bounceIn"
+        duration={1000}
+        style={styles.vegbox}>
+        <Animatable.View
+          animation="pulse"
+          iterationCount="infinite"
+          duration={1500}
+          style={styles.subVegbox}
+        />
       </Animatable.View>
-      <Animatable.View animation="fadeInRight" style={styles.nonVegbox}>
-        <View style={styles.nonSubVegbox}></View>
+
+      {/* Non-Veg Box with Quick Bounce */}
+      <Animatable.View
+        animation="bounceIn"
+        duration={1000}
+        style={styles.nonVegbox}>
+        <Animatable.View
+          animation="pulse"
+          iterationCount="infinite"
+          duration={1500}
+          style={styles.nonSubVegbox}
+        />
       </Animatable.View>
     </Animatable.View>
   );
@@ -48,7 +73,7 @@ export default Splash;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#ad954f',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -60,12 +85,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     fontSize: 17,
-    color: 'black',
+    color: 'white',
     textAlignVertical: 'bottom',
     fontWeight: '500',
   },
   vegbox: {
-    position: "absolute",
+    position: 'absolute',
     top: 20,
     left: 20,
     width: 40,
@@ -73,16 +98,16 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'green',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   subVegbox: {
     borderRadius: 20,
     width: 25,
     height: 25,
-    backgroundColor: 'green'
+    backgroundColor: 'green',
   },
   nonVegbox: {
-    position: "absolute",
+    position: 'absolute',
     top: 20,
     right: 20,
     width: 40,
@@ -90,12 +115,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'red',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   nonSubVegbox: {
     borderRadius: 20,
     width: 25,
     height: 25,
-    backgroundColor: 'red'
-  }
+    backgroundColor: 'red',
+  },
 });
