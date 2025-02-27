@@ -1,10 +1,14 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import StackNavigator from './StackNavigator';
-import DrawerNavigator from './DrawerNavigator';
+import { NavigationContainer } from '@react-navigation/native';
 
 const AppNavigator = () => {
-  return <DrawerNavigator />;
+  return (
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
+  );
 };
 
 export default AppNavigator;

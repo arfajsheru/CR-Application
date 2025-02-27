@@ -20,16 +20,17 @@ import Search from '../screen/Search';
 import Order from '../screen/Order';
 import Cart from '../screen/Cart';
 import Wishlist from '../screen/Wishlist';
+import Home from '../screen/Home';
 
 const Bottom = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
   return (
     <Bottom.Navigator>
-        <Bottom.Screen name='Menu' component={Menu} options={{
+        <Bottom.Screen name='Home' component={Home} options={{
             tabBarIcon: ({size,color}) => {
                 return (
-                    <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/menu.png")} />
+                    <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/home.png")} />
                 )
             },
             headerShown: false}}/>
@@ -40,10 +41,10 @@ const BottomTabNavigator = () => {
                 )
             },
             headerShown: false}}/>
-        <Bottom.Screen name='Search' component={Search}  options={{
+        <Bottom.Screen name='Menu' component={Menu}  options={{
             tabBarIcon: ({size,color}) => {
                 return (
-                    <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/search.png")} />
+                    <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/menu.png")} />
                 )
             },
             headerShown: false}}/>

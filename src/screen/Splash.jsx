@@ -8,7 +8,7 @@ const Splash = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('Home');
+      navigation.replace('Login');
     }, 3000); // 2 sec delay (earlier was 3s)
 
     return () => clearTimeout(timer);

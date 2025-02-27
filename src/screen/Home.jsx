@@ -1,9 +1,22 @@
-import {View, Text} from 'react-native';
 import React from 'react';
-import BottomTabNavigator from '../navigation/BottomTabNavigator';
-
+import Header from '../component/Header';
+import {StyleSheet, View} from 'react-native';
+import ChatBoat from '../component/ChatBoat';
 const Home = () => {
-  return <BottomTabNavigator />;
+  return (
+    <View style={styles.homeContainer}>
+      <Header />
+      <ChatBoat />
+    </View>
+  );
 };
 
 export default Home;
+
+const styles = StyleSheet.create({
+  homeContainer: {
+    flex:1,
+    backgroundColor:'#fff',
+    position:"relative"
+  }
+})
