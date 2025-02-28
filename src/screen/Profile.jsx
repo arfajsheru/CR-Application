@@ -1,71 +1,235 @@
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-
-const Profile = () => {
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import ProfileNavigation from '../component/ProfileNavigation';
+const SidebarNav = () => {
   const navigation = useNavigation();
+
   return (
-    <View style={{flex: 1, backgroundColor: 'white',width:'90%', padding: 10}}>
-      <Image source={require('../assets/profile.png')} style={styles.image} />
-      <Text style={styles.profiletext}>{'View Profile'}</Text>
+    <ScrollView style={styles.maincontainer}>
+      <View style={styles.sidebar}>
+        {/* Profile Section */}
+        <View style={styles.profileContainer}>
+          <Image
+            source={require('../assets/profile.png')}
+            style={styles.profileImage}
+          />
+          <View>
+            <Text style={styles.profileName}>Cafe Rajasthan</Text>
+            <Text style={styles.profileInfo}>Caferajsthan@gmail.com</Text>
+            <Text style={styles.profileInfo}>8828110344</Text>
+          </View>
+        </View>
+      </View>
 
-      <TouchableOpacity style={styles.navContainer}  onPress={()=> navigation.navigate('Home')}  >
-        <Image source={require('../assets/home.png')} style={styles.navImage} />
-        <Text style={styles.navText}>{'Home'}</Text>
-      </TouchableOpacity>
+      {/* Box section */}
+      <View style={styles.container}>
+        {/* Order */}
+        <TouchableOpacity
+          style={styles.option}
+          onPress={() => navigation.navigate('Order')}>
+          <Image source={require('../assets/order.png')} style={styles.icon} />
+          <Text style={styles.text}>Order</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.navContainer} onPress={()=> navigation.navigate('About')}>
-        <Image source={require('../assets/about.png')} style={styles.navImage}  />
-        <Text style={styles.navText}>{'About'}</Text>
-      </TouchableOpacity>
+        {/* Wishlist */}
+        <TouchableOpacity
+          style={styles.option}
+          onPress={() => navigation.navigate('Wishlist')}>
+          <Image
+            source={require('../assets/wishlist.png')}
+            style={styles.icon}
+          />
+          <Text style={styles.text}>Wishlist</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.navContainer} onPress={()=> navigation.navigate('Contact')}>
-        <Image source={require('../assets/contact.png')} style={styles.navImage}  />
-        <Text style={styles.navText}>{'Contact'}</Text>
-      </TouchableOpacity>
+        {/* Coupons */}
+        <TouchableOpacity
+          style={styles.option}
+          onPress={() => navigation.navigate('Coupons')}>
+          <Image
+            source={require('../assets/discount.png')}
+            style={styles.icon}
+          />
+          <Text style={styles.text}>Coupons</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.navContainer}  onPress={()=> navigation.navigate('Login')}>
-        <Image source={require('../assets/login.png')} style={styles.navImage} />
-        <Text style={styles.navText}>{'Login'}</Text>
-      </TouchableOpacity>
+        {/* Help */}
+        <TouchableOpacity
+          style={styles.option}
+          onPress={() => navigation.navigate('HelpSupport')}>
+          <Image source={require('../assets/help.png')} style={styles.icon} />
+          <Text style={styles.text}>Help</Text>
+        </TouchableOpacity>
+      </View>
 
-      <TouchableOpacity style={styles.navContainer} onPress={()=> navigation.navigate('Signup')}>
-        <Image source={require('../assets/signup.png')} style={styles.navImage} />
-        <Text style={styles.navText}>{'Signup'}</Text>
-      </TouchableOpacity>
+      {/* cash and gift section */}
+      <View style={styles.giftContainer}>
+        <View style={styles.giftTop}>
+          <Image
+            style={{width: 30, height: 30, resizeMode: 'contain'}}
+            source={require('../assets/logo.png')}
+          />
+          <Text style={styles.gifttitle}>CafeRajasthan Cash & Gift Card</Text>
+        </View>
 
-    </View>
+        <View style={styles.giftBottom}>
+          <Text style={styles.balanceText}>
+            Available Balance <Text style={{color: 'black'}}>₹100</Text>
+          </Text>
+
+          <Text style={styles.addBalance}>Add Balance</Text>
+        </View>
+      </View>
+
+      {/* Profile section */}
+      <ProfileNavigation />
+
+      {/* Logout button */}
+      <View style={styles.logoutcontainer}>
+        <TouchableOpacity style={styles.logoutbutton}>
+          <Text style={styles.logoutText}>Log Out</Text>
+        </TouchableOpacity>
+
+        <View style={styles.appVersion}>
+          <Text style={styles.versiontext}>App Version 1.02.05</Text>
+          <Text style={styles.versiontext}>V12-18</Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
-export default Profile;
-
 const styles = StyleSheet.create({
-  image: {
-    width: 100,
-    height: 100,
-    alignSelf: 'center',
-    marginTop: 50,
+  maincontainer: {
+    padding: 5,
+    paddingHorizontal: 17,
   },
-  profiletext: {
-    fontSize: 20,
-    fontWeight: 500,
-    textAlign: 'center',
-    marginTop: 10,
-  },
-  navContainer: {
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
-    width:'90%',
-    height:50,
+    marginBottom: 20,
   },
-  navImage: {
+  nexticon: {
     width: 30,
     height: 30,
+    transform: [{rotate: '180deg'}],
   },
-  navText: {
+  headerText: {fontSize: 18, fontWeight: 'bold'},
+  profileContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 10,
+  },
+  profileImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#ccc',
+  },
+  profileName: {fontSize: 16, fontWeight: 'bold'},
+  profileInfo: {fontSize: 12, color: 'gray'},
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+  },
+  option: {
+    height: 80,
+    width: 90,
+    backgroundColor: '#e5e5e5',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 15,
+    gap: 5,
+  },
+  icon: {
+    width: 30,
+    height: 30,
+    resizeMode: 'contain',
+    tintColor: 'black',
+  },
+  text: {
+    fontSize: 12,
+    color: '#333',
+  },
+  giftContainer: {
+    borderWidth: 2,
+    borderColor: '#ad954f',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    backgroundColor: '#f2e9d2',
+    marginVertical: 10,
+  },
+  giftTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 0.6,
+    borderBottomColor: '#ad954f',
+    padding: 5,
+  },
+  gifttitle: {
     fontSize: 20,
-    fontWeight: 300,
+    fontWeight: 500,
+  },
+  giftBottom: {
+    padding: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 10,
+  },
+  balanceText: {
+    fontSize: 17,
+    fontWeight: 500,
+    color: '#ACADA8',
+  },
+  addBalance: {
+    borderWidth: 1.5,
+    padding: 10,
+    borderRadius: 10,
+    borderColor: '#ad954f',
+    fontSize: 15,
+    fontWeight: 900,
+    color: '#ad954f',
+  },
+  logoutcontainer: {
+    marginVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoutbutton: {
+    borderWidth: 1,
+    width: '25%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#ad954f',
+    borderRadius: 5,
+  },
+  logoutText: {
+    fontSize: 20,
+    fontWeight: 500,
+    color: '#ad954f',
+  },
+  appVersion: {
+    marginVertical: 20,
+  },
+  versiontext: {
+    textAlign: 'center',
+    color: '#999999',
+    fontWeight: 500,
   },
 });
+
+export default SidebarNav;

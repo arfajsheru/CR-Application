@@ -30,7 +30,7 @@ const BottomTabNavigator = () => {
         <Bottom.Screen name='Home' component={Home} options={{
             tabBarIcon: ({size,color}) => {
                 return (
-                    <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/home.png")} />
+                    <Image style={{width:size, height:size, resizeMode:'contain'}} source={require("../assets/logo.png")} />
                 )
             },
             headerShown: false}}/>

@@ -10,8 +10,12 @@ import React from 'react';
 import * as Animatable from 'react-native-animatable';
 import { Text } from 'react-native-gesture-handler';
 import SearchInput from './SearchInput';
+import { useNavigation } from '@react-navigation/native';
+
 
 const Header = () => {
+
+  const navigation = useNavigation();
   return (
     <Animatable.View 
       animation="slideInDown" 
@@ -26,7 +30,7 @@ const Header = () => {
         <View style={styles.header}>
           {/* Left Side - Logo, Delivery & Location */}
           <View style={styles.logoTextLocContainer}>
-            <View style={styles.leftContainer}>
+            <View  style={styles.leftContainer}>
               {/* Logo */}
               <Image style={styles.logo} source={require('../assets/logo.png')} />
 
@@ -50,7 +54,9 @@ const Header = () => {
           </View>
 
           {/* Right Side - Profile Icon */}
-          <TouchableOpacity style={styles.profileContainer}>
+          <TouchableOpacity style={styles.profileContainer}
+          onPress={() => navigation.navigate('Profile')}
+          >
             <Image
               style={styles.profileIcon}
               source={require('../assets/login.png')}
