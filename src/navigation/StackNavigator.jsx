@@ -17,6 +17,7 @@ import ReferAndEarn from '../screen/ReferAndEarn';
 import SuggestProducts from '../screen/SuggestProducts';
 import Coupons from '../screen/Coupons';
 import Search from '../screen/Search';
+import CustomeScreenHeader from '../component/CustomeScreenHeader';
 
 const stack = createStackNavigator();
 
@@ -45,8 +46,12 @@ const StackNavigator = () => {
         component={BottomTabNavigator}
         options={{headerShown: false}}
       />
-      <stack.Screen name="AiScreen" component={AiScreen} />
-      <stack.Screen name="Search" component={Search} />
+      <stack.Screen name="AiScreen" component={AiScreen}  />
+      <stack.Screen name="Search" component={Search} options={{
+            headerTitle: () => <CustomeScreenHeader />,  // यहाँ Custom Header सेट किया
+            headerStyle: { backgroundColor: '#ad954f' }, // Header का Background Color
+            headerTitleContainerStyle:{width:'100%'},
+          }}  />
 
       <stack.Screen name="Profile" component={Profile} />
       <stack.Screen name="About" component={About} />

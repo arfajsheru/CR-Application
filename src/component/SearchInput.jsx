@@ -9,10 +9,10 @@ import {
 import React, {useEffect} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
+import RollingBar from 'react-native-rolling-bar';
 
 const SearchInput = () => {
   const navigation = useNavigation();
-
 
   return (
     <View style={styles.searchContainer}>
@@ -20,20 +20,17 @@ const SearchInput = () => {
         source={require('../assets/search.png')}
         style={styles.searchIcon}
       />
+      <TouchableOpacity style={styles.rollingcontainer} onPress={() => navigation.navigate('Search')} activeOpacity={1}>
+        <Text style={styles.titlesearch}>Search for</Text>
 
-      {/* Navigate to Search Screen on TextInput focus */}
-      <TextInput
-        placeholder="Search here..."
-        placeholderTextColor="#888"
-        style={styles.searchInput}
-        onFocus={() => navigation.navigate('Search')}
-      />
-
-      <TouchableOpacity style={styles.voiceBorder}>
-        <Image
-          style={styles.voiceIcon}
-          source={require('../assets/voice.png')}
-        />
+        <RollingBar interval={3000} defaultStyle={false}>
+          <Text style={styles.text}>"Non-Veg Items"</Text>
+          <Text style={styles.text}>"Veg Items"</Text>
+          <Text style={styles.text}>"Paneer"</Text>
+          <Text style={styles.text}>"Roti" </Text>
+          <Text style={styles.text}>"Prawns" </Text>
+          <Text style={styles.text}>"Soup" </Text>
+        </RollingBar>
       </TouchableOpacity>
     </View>
   );
@@ -72,4 +69,18 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     borderColor: '#ad954f',
   },
+  text: {
+    fontSize: 15,
+    fontWeight: 400,
+    color: '#ad954f',
+  },
+  titlesearch: {
+    fontSize: 15,
+    fontWeight: 400,
+    color: 'black',
+  },
+  rollingcontainer: {
+    flexDirection:'row',
+    gap:5
+  }
 });
