@@ -7,7 +7,7 @@ const ChatBoat = () => {
   return (
     <View style={styles.container}>
       {/* AI Bubble */}
-      <TouchableOpacity style={styles.aiContainer} onPress={() => navigation.navigate('AiScreen')}>
+      <TouchableOpacity style={styles.aiContainer} activeOpacity={false} onPress={() => navigation.navigate('AiScreen')}>
         <Image style={styles.aiicon} source={require("../assets/AiIcon.png")} />
       </TouchableOpacity>
     </View>

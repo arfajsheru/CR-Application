@@ -24,7 +24,7 @@ const Header = () => {
     >
       <SafeAreaView style={styles.container}>
         {/* Status Bar */}
-        <StatusBar backgroundColor="#ad954f" barStyle="light-content" />
+        
 
         {/* Header */}
         <View style={styles.header}>

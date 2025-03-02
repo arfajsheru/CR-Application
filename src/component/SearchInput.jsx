@@ -1,13 +1,25 @@
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, Image } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native'
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+  Image,
+} from 'react-native';
+import React, {useEffect} from 'react';
+
+import {useNavigation} from '@react-navigation/native';
 
 const SearchInput = () => {
   const navigation = useNavigation();
 
+
   return (
     <View style={styles.searchContainer}>
-      <Image source={require('../assets/search.png')} style={styles.searchIcon} />
+      <Image
+        source={require('../assets/search.png')}
+        style={styles.searchIcon}
+      />
 
       {/* Navigate to Search Screen on TextInput focus */}
       <TextInput
@@ -18,11 +30,14 @@ const SearchInput = () => {
       />
 
       <TouchableOpacity style={styles.voiceBorder}>
-        <Image style={styles.voiceIcon} source={require('../assets/voice.png')} />
+        <Image
+          style={styles.voiceIcon}
+          source={require('../assets/voice.png')}
+        />
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 export default SearchInput;
 
@@ -55,6 +70,6 @@ const styles = StyleSheet.create({
   voiceBorder: {
     borderLeftWidth: 0.9,
     paddingLeft: 5,
-    borderColor: "#ad954f",
+    borderColor: '#ad954f',
   },
 });

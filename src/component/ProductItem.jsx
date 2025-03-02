@@ -1,53 +1,71 @@
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
-const ProductItem = () => {
-  const data = {
-    id: '1',
-    name: 'Dahi Raita',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.!',
-    current_Price: 40,
-    original_Price: 60, // Example original price
-    offer: 20, // Example discount
-    category: 'Veg',
-    subCategory: 'Dahi salad',
-    image: require('../assets/food1.jpg'),
-    rating: {stars: 4.5, view: 1400},
+import React, {useState} from 'react';
+const ProductItem = ({item}) => {
+  const [itemQuantity, setItemQuantity] = useState(0);
+
+
+  const updateQuantity = type => {
+    setItemQuantity(prev => {
+      let newQuantity = type === 'increment' ? prev + 1 : prev - 1;
+      return Math.max(0, newQuantity);
+    });
   };
 
   return (
     <View style={styles.productContainer}>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={data.image} />
+        <Image style={styles.image} source={item.image} />
         <View style={styles.ratingcontainer}>
           <Text style={styles.rating}>
-            {data.rating.stars}★ | {data.rating.view}
+            {item.rating.stars}★ | {item.rating.view}
           </Text>
         </View>
 
         <View style={styles.offercontainer}>
           <Text style={styles.offertext}>
-            {data.offer}%{'\n'}OFF
+            {item.offer}%{'\n'}OFF
           </Text>
-         
         </View>
       </View>
       <View>
         <Text style={styles.categoryText}>
-          {data.category} | {data.subCategory}
+          {item.category} | {item.subCategory}
         </Text>
       </View>
-      <Text style={styles.name}>{data.name}</Text>
+      <Text style={styles.name}>{item.name}</Text>
 
       <View style={styles.btnpriceContainer}>
-
-      <Text style={styles.price}>
-        ₹{data.current_Price}{' '}
-        <Text style={styles.originalPrice}>₹{data.original_Price}</Text>
-      </Text>
-
-      <TouchableOpacity style={styles.addbtn} activeOpacity={1}>
-        <Text style={styles.addbtntext}>Add</Text>
-      </TouchableOpacity>
+        <Text style={styles.price}>
+          ₹{item.current_Price}{' '}
+          <Text style={styles.originalPrice}>₹{item.original_Price}</Text>
+        </Text>
+      
+      <View style={styles.priceandbtn}>
+        {itemQuantity === 0 ? (
+          <TouchableOpacity
+            style={styles.addbtn}
+            activeOpacity={1}
+            onPress={() => setItemQuantity(1)}>
+            <Text style={styles.addbtntext}>Add</Text>
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.addbtnquantity} activeOpacity={1}>
+            <TouchableOpacity onPress={() => updateQuantity('decrement')}>
+              <Image
+                style={styles.minusandplusbtn}
+                source={require('../assets/minus.png')}
+              />
+            </TouchableOpacity>
+            <Text style={styles.addbtnquantityText}>{itemQuantity}</Text>
+            <TouchableOpacity onPress={() => updateQuantity('increment')}>
+              <Image
+                style={styles.minusandplusbtn}
+                source={require('../assets/plus.png')}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+        </View>
       </View>
     </View>
   );
@@ -60,7 +78,6 @@ const styles = StyleSheet.create({
     margin: 10,
     width: '45%',
     marginBottom: 10,
-    marginLeft: 10,
     overflow: 'hidden',
   },
   imageContainer: {
@@ -117,8 +134,8 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderStartStartRadius: 7,
     borderEndEndRadius: 7,
-    borderRightWidth:3,
-    borderColor:'white'
+    borderRightWidth: 3,
+    borderColor: 'white',
   },
   offertext: {
     fontSize: 9,
@@ -131,24 +148,51 @@ const styles = StyleSheet.create({
     left: 0,
   },
   addbtn: {
-    borderWidth:2,
-    borderColor: "#ad954f",
-    paddingVertical:4,
-    width:"40%",
+    borderWidth: 2,
+    borderColor: '#ad954f',
+    paddingVertical: 3,
+    width: 65,
+    height:32,
     borderRadius: 5,
-    justifyContent:'center',
-    alignItems:'center'
-
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  addbtntext:{
-    fontSize:20,
-    fontWeight:'bold',
-    color:"#ad954f",
-    textAlign:'center'
+  addbtntext: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ad954f',
+    textAlign: 'center',
+  },
+  addbtnquantityText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
+    paddingVertical: 1,
+  },
+  addbtnquantity: {
+    borderWidth: 2,
+    borderColor: '#ad954f',
+    backgroundColor: '#ad954f',
+    flexDirection: 'row',
+    paddingVertical: 3,
+    width: '70',
+    height:32,
+    borderRadius: 5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   btnpriceContainer: {
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'center'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  minusandplusbtn: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    tintColor: 'white',
+  },
+  priceandbtn: {
+    marginTop:10,
   }
 });
