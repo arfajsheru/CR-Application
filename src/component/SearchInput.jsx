@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   titlesearch: {
     fontSize: 15,
     fontWeight: 400,
-    color: 'black',
+    color: 'gray',
   },
   rollingcontainer: {
     flexDirection:'row',

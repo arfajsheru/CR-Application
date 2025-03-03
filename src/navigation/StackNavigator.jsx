@@ -39,8 +39,31 @@ const StackNavigator = () => {
         component={Splash}
         options={{headerShown: false}}
       />
-      <stack.Screen name="Signup" component={Signup} options={{headerShown: false}} />
-      <stack.Screen name="Login" component={Login} options={{headerShown: false}} /> */}
+      */}
+      {/* <stack.Screen name="Login" component={Login} 
+      options={{
+        headerTitleStyle: {
+          fontSize: 26,
+          fontFamily: 'NotoSerifKhojki-Bold', // ✅ Custom Font
+          color: 'black', // ✅ Title Color (Yellow)
+        },
+        headerStyle: {
+          backgroundColor: '#ad954f', // ✅ Background Color
+        },
+      }}
+      /> 
+      <stack.Screen name="Signup" component={Signup} 
+       options={{
+        headerTitleStyle: {
+          fontSize: 26,
+          fontFamily: 'NotoSerifKhojki-Bold', // ✅ Custom Font
+          color: 'black', // ✅ Title Color (Yellow)
+        },
+        headerStyle: {
+          backgroundColor: '#ad954f', // ✅ Background Color
+        },
+      }}
+      /> */}
       <stack.Screen
         name="Main"
         component={BottomTabNavigator}
@@ -61,7 +84,6 @@ const StackNavigator = () => {
       <stack.Screen name="Wishlist" component={Wishlist} />
       <stack.Screen name="MyProfile" component={MyProfile} />
       <stack.Screen name="ReferEarn" component={ReferAndEarn} />
-      <stack.Screen name="SuggestProducts" component={SuggestProducts} />
       <stack.Screen name="Coupons" component={Coupons} />
     </stack.Navigator>
   );

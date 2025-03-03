@@ -34,13 +34,13 @@ const BottomTabNavigator = () => {
                 )
             },
             headerShown: false}}/>
-        <Bottom.Screen name='Order' component={Order}  options={{
-            tabBarIcon: ({size,color}) => {
-                return (
-                    <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/order.png")} />
-                )
-            },
-            headerShown: false}}/>
+            <Bottom.Screen name='Wishlist' component={Wishlist}  options={{
+                tabBarIcon: ({size,color}) => {
+                    return (
+                        <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/wishlist.png")} />
+                    )
+                },
+                headerShown: false}}/>
         <Bottom.Screen name='Menu' component={Menu}  options={{
             tabBarIcon: ({size,color}) => {
                 return (
@@ -55,13 +55,13 @@ const BottomTabNavigator = () => {
                 )
             },
             headerShown: false}}/>
-        <Bottom.Screen name='Wishlist' component={Wishlist}  options={{
-            tabBarIcon: ({size,color}) => {
-                return (
-                    <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/wishlist.png")} />
-                )
-            },
-            headerShown: false}}/>
+            <Bottom.Screen name='Order' component={Order}  options={{
+                tabBarIcon: ({size,color}) => {
+                    return (
+                        <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/order.png")} />
+                    )
+                },
+                headerShown: false}}/>
     </Bottom.Navigator>
   )
 }

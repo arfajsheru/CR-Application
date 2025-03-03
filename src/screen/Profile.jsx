@@ -94,7 +94,7 @@ const SidebarNav = () => {
 
       {/* Logout button */}
       <View style={styles.logoutcontainer}>
-        <TouchableOpacity style={styles.logoutbutton}>
+        <TouchableOpacity style={styles.logoutbutton} onPress={() => navigation.replace('Login')}>
           <Text style={styles.logoutText}>Log Out</Text>
         </TouchableOpacity>
 

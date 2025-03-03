@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   rating: {
     fontSize: 11,
-    color: '#ad954f',
+    color: 'black',
     fontWeight: 'bold',
   },
   ratingcontainer: {

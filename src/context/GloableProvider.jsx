@@ -6,7 +6,7 @@ import FoodItemProvider from './FoodItemContext';
 const GloableProvider = ({children}) => {
   return (
     <AuthProvider>
-      {children}
+      <FoodItemProvider>{children}</FoodItemProvider>
     </AuthProvider>
   );
 };
