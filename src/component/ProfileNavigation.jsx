@@ -1,10 +1,12 @@
 import {View, Text, StyleSheet, TouchableOpacity, Image, Modal} from 'react-native';
 import React, {useContext} from 'react';
 import { FoodItemContext } from '../context/FoodItemContext';
-import SuggestProducts from '../screen/SuggestProducts';
+import SuggestProducts from './SuggestProducts';
+import { useNavigation } from '@react-navigation/native';
 
 const ProfileNavigation = () => {
-  const {modalVisible, setModalVisible} = useContext(FoodItemContext);
+  const {setModalVisible} = useContext(FoodItemContext);
+  const navigation = useNavigation();
 
   const options = [
     { title: 'My Profile', icon: require('../assets/myprofile.png'), name: 'MyProfile' },
@@ -21,7 +23,7 @@ const ProfileNavigation = () => {
           key={index}
           style={styles.navContainer}
           activeOpacity={1}
-          onPress={() => console.log(`${item.name} Clicked!`)}>
+          onPress={() => navigation.navigate(item.name)}>
           <View style={styles.leftContainer}>
             <Image style={styles.icon} source={item.icon} />
             <Text style={styles.text}>{item.title}</Text>

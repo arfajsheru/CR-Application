@@ -14,7 +14,7 @@ import HelpSupport from '../screen/HelpSupport';
 import Wishlist from '../screen/Wishlist';
 import MyProfile from '../screen/MyProfile';
 import ReferAndEarn from '../screen/ReferAndEarn';
-import SuggestProducts from '../screen/SuggestProducts';
+import SuggestProducts from '../component/SuggestProducts';
 import Coupons from '../screen/Coupons';
 import Search from '../screen/Search';
 import CustomeScreenHeader from '../component/CustomeScreenHeader';
@@ -40,7 +40,7 @@ const StackNavigator = () => {
         options={{headerShown: false}}
       />
       */}
-      {/* <stack.Screen name="Login" component={Login} 
+      <stack.Screen name="Login" component={Login} 
       options={{
         headerTitleStyle: {
           fontSize: 26,
@@ -63,7 +63,7 @@ const StackNavigator = () => {
           backgroundColor: '#ad954f', // ✅ Background Color
         },
       }}
-      /> */}
+      />
       <stack.Screen
         name="Main"
         component={BottomTabNavigator}

@@ -6,23 +6,32 @@ import Category from '../component/Category';
 import BestSeller from '../component/BestSeller';
 
 const Home = () => {
+  // ✅ List Header
+  const renderHeader = () => (
+    <>
+      <Header />
+      <Category />
+    </>
+  );
+
+  // ✅ Render BestSeller Component
+  const renderBestSeller = () => <BestSeller />;
+
   return (
     <View style={styles.homeContainer}>
+      {/* ✅ Status Bar Customization */}
       <StatusBar backgroundColor="#ad954f" barStyle="light-content" />
+      <Header />
+      <Category />
+      {/* ✅ FlatList for Scrollable Content */}
       <FlatList
-        ListHeaderComponent={
-          <>
-            <Header />
-            <Category />
-          </>
-        }
-        data={[{ key: 'bestseller' }]} // Dummy data to render BestSeller component
-        renderItem={() => <BestSeller />}
+        data={[{ key: 'bestseller' }]} // Dummy data
+        renderItem={renderBestSeller}
         keyExtractor={(item) => item.key}
-        showsVerticalScrollIndicator={false}
+        
       />
 
-      {/* ChatBoat ko Fixed Position pe rakha */}
+      {/* ✅ Floating ChatBot Icon */}
       <View style={styles.chatBoatWrapper}>
         <ChatBoat />
       </View>
