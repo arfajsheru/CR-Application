@@ -18,6 +18,10 @@ import SuggestProducts from '../component/SuggestProducts';
 import Coupons from '../screen/Coupons';
 import Search from '../screen/Search';
 import CustomeScreenHeader from '../component/CustomeScreenHeader';
+import Admin from '../screen/Admin';
+import OrderList from '../component/OrderList';
+import AddItems from '../component/AddItems';
+import ListItem from '../component/ListItem';
 
 const stack = createStackNavigator();
 
@@ -40,7 +44,7 @@ const StackNavigator = () => {
         options={{headerShown: false}}
       />
       */}
-      <stack.Screen name="Login" component={Login} 
+      {/* <stack.Screen name="Login" component={Login} 
       options={{
         headerTitleStyle: {
           fontSize: 26,
@@ -63,7 +67,7 @@ const StackNavigator = () => {
           backgroundColor: '#ad954f', // ✅ Background Color
         },
       }}
-      />
+      /> */}
       <stack.Screen
         name="Main"
         component={BottomTabNavigator}
@@ -85,6 +89,7 @@ const StackNavigator = () => {
       <stack.Screen name="MyProfile" component={MyProfile} />
       <stack.Screen name="ReferEarn" component={ReferAndEarn} />
       <stack.Screen name="Coupons" component={Coupons} />
+
     </stack.Navigator>
   );
 };

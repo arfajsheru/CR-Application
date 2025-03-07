@@ -13,7 +13,7 @@
 
 
 import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Menu from '../screen/Menu';
 import Search from '../screen/Search';
@@ -21,12 +21,20 @@ import Order from '../screen/Order';
 import Cart from '../screen/Cart';
 import Wishlist from '../screen/Wishlist';
 import Home from '../screen/Home';
+import Admin from '../screen/Admin';
+import { useRoute } from '@react-navigation/native';
 
 const Bottom = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
+    const route = useRoute();
+    const [email, setemail] = useState('arfajsheru74@gmail.com')
   return (
-    <Bottom.Navigator>
+    <Bottom.Navigator 
+    screenOptions={({route}) => ({
+        tabBarStyle: route.name === "Admin" ? { display: 'none' } : {}
+    })}
+    >
         <Bottom.Screen name='Home' component={Home} options={{
             tabBarIcon: ({size,color}) => {
                 return (
@@ -34,10 +42,10 @@ const BottomTabNavigator = () => {
                 )
             },
             headerShown: false}}/>
-            <Bottom.Screen name='Wishlist' component={Wishlist}  options={{
+            <Bottom.Screen name='Order' component={Order}  options={{
                 tabBarIcon: ({size,color}) => {
                     return (
-                        <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/wishlist.png")} />
+                        <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/order.png")} />
                     )
                 },
                 headerShown: false}}/>
@@ -55,13 +63,13 @@ const BottomTabNavigator = () => {
                 )
             },
             headerShown: false}}/>
-            <Bottom.Screen name='Order' component={Order}  options={{
-                tabBarIcon: ({size,color}) => {
-                    return (
-                        <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/order.png")} />
-                    )
-                },
-                headerShown: false}}/>
+                {email === 'arfajsheru74@gmail.com' ? <Bottom.Screen name='Admin' component={Admin}  options={{
+                    tabBarIcon: ({size,color}) => {
+                        return (
+                            <Image style={{width:size, height:size, tintColor:'black'}} source={require("../assets/admin.png")} />
+                        )
+                    },
+                    headerShown: false}}/>: null}
     </Bottom.Navigator>
   )
 }
